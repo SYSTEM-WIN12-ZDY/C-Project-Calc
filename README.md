@@ -31,3 +31,20 @@
   ><code>如 LoaderForge.dll</code>
 
   >欢迎加入我们!
+
+
+## 大佬区康
+>该区域仅限于大佬查看，其他不建议查看
+>
+>1.Api调用方法
+
+用C++编写动态链接库形式，dllmain.cpp中使用
+<code>
+#include<tool.h>
+string Loader(int LoaderCmp){
+    extern int fire;
+    tools x;
+    ReturnLoaderCmp=x.FireLoader(LoaderCmp);
+    return ReturnLoaderCmp;
+}
+</code>
