@@ -1,0 +1,35 @@
+# Project: ÏîÄ¿1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = operator_private.res
+OBJ      = dllmain.o $(RES)
+LINKOBJ  = dllmain.o $(RES)
+LIBS     = -L"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/lib" -L"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/include" -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/include" -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"E:/Wesxcvram Files/box 4/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = operator.dll
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1
+CFLAGS   = $(INCS) -DBUILDING_DLL=1
+RM       = rm.exe -f
+DEF      = liboperator.def
+STATIC   = liboperator.a
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN) $(DEF) $(STATIC)
+
+$(BIN): $(LINKOBJ)
+	$(CPP) -shared $(LINKOBJ) -o $(BIN) $(LIBS) -Wl,--output-def,$(DEF),--out-implib,$(STATIC),--add-stdcall-alias
+
+dllmain.o: dllmain.cpp
+	$(CPP) -c dllmain.cpp -o dllmain.o $(CXXFLAGS)
+
+operator_private.res: operator_private.rc 
+	$(WINDRES) -i operator_private.rc --input-format=rc -o operator_private.res -O coff 
+

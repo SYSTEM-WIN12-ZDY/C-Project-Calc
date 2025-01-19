@@ -1,0 +1,5 @@
+EXPORTS
+    OperAddition @1
+    OperDivision @2
+    OperMultiplication @3
+    OperSubtraction @4
